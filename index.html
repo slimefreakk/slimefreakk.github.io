@@ -1,44 +1,254 @@
 <!DOCTYPE html>
-<html>
+<html lang="tr">
 <head>
-  <title>HazalServer</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HazalServer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #f8f8f8;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            transition: transform 0.5s ease-in-out;
+        }
+
+        .header {
+            width: 100%;
+            text-align: center;
+            margin-top: 10px;
+        }
+
+        .header hr {
+            border: none;
+            border-top: 1px solid black;
+            margin: 10px 0;
+        }
+
+        .header i {
+            font-style: italic;
+            font-size: 1rem;
+            display: inline-block;
+            white-space: nowrap;
+        }
+
+        .snowflake {
+            position: absolute;
+            top: -10px;
+            color: rgb(0, 0, 0);
+            font-size: 12px;
+            user-select: none;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+        .party-mode {
+            animation: rgbBackground 1s infinite alternate;
+        }
+
+        @keyframes rgbBackground {
+            0% { background-color: red; }
+            25% { background-color: blue; }
+            50% { background-color: green; }
+            75% { background-color: yellow; }
+            100% { background-color: purple; }
+        }
+
+        .party-image {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+        }
+
+        .container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px;
+        }
+
+        .list-wrapper {
+            background: white;
+            border: 2px solid #000;
+            padding: 15px;
+            border-radius: 8px;
+            width: 30%;
+            text-align: center;
+            box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 15px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 20px;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .button:hover {
+            background-color: #45a049;
+            transform: scale(1.1);
+        }
+
+        .button:focus {
+            outline: none;
+        }
+
+        .audio-player {
+            display: none;
+        }
+    </style>
 </head>
-<body>
-  <h1>UㅤmㅤuㅤtㅤtㅤeㅤpㅤeㅤㅤTㅤhㅤeㅤㅤㅤBㅤeㅤsㅤt</h1>
-  <h2>Nüfus (8 kişi)</h2>
-  <ul>
-    <li>Gr8Bizzo</li>
-    <li>SametPM</li>
-    <li>selimhfc</li>
-    <li>y4gizim</li>
-    <li>Foxbat</li>
-    <li>Slimefreak (admin)</li>
-    <li>tMit (admin)</li>
-    <li>Can</li>
-  </ul>
-  <h2>Beklenenler</h2>
-  <ul>
-    <li>minelhftc</li>
-    <li>g0kcem</li>
-    <li>h4zalim</li>
-    <li>Kuzey Emir Demircan</li>
-    <li>zaum (Verstappen)</li>
-  </ul>
-  <h2>Başlıca Turistik Yerler</h2>
-  <ul>
-    <li>Hazalhouse</li>
-    <li>Gr8bizzo+sametpapcimobil mob farm</li>
-    <li>Hazaleli</li>
-    <li>Hasan Dayı (HD)'nin mezarı</li>
-    <li>yagizhisar</li>
-    <li>timurzifon</li>
-    <li>yahyakaptan</li>
-    <li>Haftacı madenleri</li>
-    <li>başai</li>
-    <li>Hazasofya</li>
-    <li>burcu kalifa</li>
-    <li>SCAL</li>
-  </ul>
-  <p>Sürpriz :D</p>
+<body onload="createSnowflakes(); playBackgroundMusic();">
+    <div class="header">
+        <hr>
+        <i>🔥UㅤmㅤuㅤtㅤtㅤeㅤpㅤeㅤㅤTㅤhㅤeㅤㅤㅤBㅤeㅤsㅤt🔥</i>
+        <hr>
+    </div>
+
+    <div class="container">
+        <div class="list-wrapper">
+            <h3>Nüfus (8 kişi)</h3>
+            <ul>
+                <li><i>Gr8Bizzo</i></li>
+                <li><i>SametPM</i></li>
+                <li><i>selimhfc</i></li>
+                <li><i>y4gizim</i></li>
+                <li><i>Foxbat</i></li>
+                <li><i>Slimefreak (admin)</i></li>
+                <li><i>tMit (admin)</i></li>
+                <li><i>Can</i></li>
+            </ul>
+        </div>
+
+        <div class="list-wrapper">
+            <h3>Beklenenler</h3>
+            <ul>
+                <i>
+                <li>minelhftc</li>
+                <li>g0kcem</li>
+                <li>h4zalim</li>
+                <li>Kuzey Emir Demircan</li>
+                <li>zaum (Verstappen)</li>
+                </i>
+            </ul>
+        </div>
+
+        <div class="list-wrapper">
+            <h3>Başlıca Turistik Yerler</h3>
+            <ul>
+                <li><i>Hazalhouse</i></li>
+                <li><i>Gr8bizzo+sametpapcimobil mob farm</i></li>
+                <li><i>Hazaleli</i></li>
+                <li><i>Hasan Dayı (HD)'nin mezarı</i></li>
+                <li><i>yagizhisar</i></li>
+                <li><i>timurzifon</i></li>
+                <li><i>yahyakaptan</i></li>
+                <li><i>Haftacı madenleri</i></li>
+                <li><i>başai</i></li>
+                <li><i>Hazasofya</i></li>
+                <li><i>burcu kalifa</i></li>
+                <li><b>SCAL</b></li>
+            </ul>
+        </div>
+    </div>
+
+    <button class="button" onclick="startPartyMode()">Sürpriz :D</button>
+    <audio id="backgroundMusic" class="audio-player" loop>
+        <source src="sakin-muzik.mp3" type="audio/mpeg">
+    </audio>
+    <audio id="partyMusic" class="audio-player" loop>
+        <source src="parti-muzik.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function playBackgroundMusic() {
+            const backgroundMusic = document.getElementById("backgroundMusic");
+            backgroundMusic.play();
+        }
+
+        function createSnowflakes() {
+            const snowflakeCount = 50; // Kar tanesi sayısı
+            for (let i = 0; i < snowflakeCount; i++) {
+                const snowflake = document.createElement("div");
+                snowflake.classList.add("snowflake");
+                snowflake.textContent = "❄";
+                snowflake.style.left = `${Math.random() * 100}vw`;
+                snowflake.style.animationDuration = `${Math.random() * 3 + 2}s`; // Farklı hızlar
+                snowflake.style.fontSize = `${Math.random() * 10 + 10}px`; // Farklı boyutlar
+                document.body.appendChild(snowflake);
+            }
+        }
+
+        function removeSnowflakes() {
+            const snowflakes = document.querySelectorAll(".snowflake");
+            snowflakes.forEach(snowflake => snowflake.remove());
+        }
+
+        function startPartyMode() {
+            removeSnowflakes();
+            document.body.classList.add("party-mode");
+            const backgroundMusic = document.getElementById("backgroundMusic");
+            const partyMusic = document.getElementById("partyMusic");
+            backgroundMusic.pause();
+            partyMusic.play();
+
+            const imageUrls = [
+                'bayramalicannn.png',
+                'Can.png',
+                'merdo.png',
+                'selim.png',
+                'tümagalar.png',
+                'timur.png',
+                'kurnaz.png',
+                'kübra.png'
+            ];
+            imageUrls.forEach(url => {
+                const img = document.createElement("img");
+                img.src = url;
+                img.classList.add("party-image");
+                document.body.appendChild(img);
+                animateImage(img);
+            });
+        }
+
+        function animateImage(img) {
+            let dx = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 4 + 1);
+            let dy = (Math.random() > 0.5 ? 1 : -1) * (Math.random() * 4 + 1);
+            function move() {
+                let rect = img.getBoundingClientRect();
+                if (rect.left + rect.width >= window.innerWidth || rect.left <= 0) dx = -dx;
+                if (rect.top + rect.height >= window.innerHeight || rect.top <= 0) dy = -dy;
+                img.style.left = `${rect.left + dx}px`;
+                img.style.top = `${rect.top + dy}px`;
+                requestAnimationFrame(move);
+            }
+            img.style.position = "absolute";
+            img.style.left = `${Math.random() * (window.innerWidth - 100)}px`;
+            img.style.top = `${Math.random() * (window.innerHeight - 100)}px`;
+            move();
+        }
+    </script>
 </body>
 </html>
