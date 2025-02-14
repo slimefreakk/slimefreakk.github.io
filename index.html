@@ -250,8 +250,31 @@
             move();
         }
     </script>
-    <button class="button" onclick="window.open('https://github.com/slimefreakk/slimefreakk.github.io', '_blank')">
-        View Source Code
+
+
+    <button class="source-button" onclick="window.open('https://github.com/slimefreakk/slimefreakk.github.io', '_blank')">
+        Kaynak Kodu
     </button>
+
+    <style>
+        .source-button {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background-color: #333;
+            color: white;
+            font-size: 12px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+        }
+
+        .source-button:hover {
+            background-color: #555;
+            transform: scale(1.1);
+        }
+    </style>
 </body>
 </html>
